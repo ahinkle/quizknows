@@ -13,6 +13,7 @@ Todo
 - [Laravel Framework](https://github.com/laravel/laravel)
 - [Vue JS](https://vuejs.org/)
 - [Buefy](https://buefy.github.io/)
+- [Font Awesome](https://fontawesome.com/)
 
 ## Authors
 
