@@ -2,7 +2,7 @@
 
 ## Quiz Knows
 
-Quiz Knows is easy to use, lightening fast, and will help you decide where the best place to eat is in Evansville, IN based on your preferences!
+Quiz Knows is easy to use, lightning fast, and will help you decide where the best place to eat is in Evansville, IN based on your preferences!
 
 ## Getting Started
 
