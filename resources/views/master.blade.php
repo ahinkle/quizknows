@@ -5,6 +5,7 @@
 
     <body>
         <div id="app">
+            @include('layout.navbar')
             <div class="container is-fluid">
                 @yield('content')
             </div>
