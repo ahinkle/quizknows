@@ -12,7 +12,7 @@ class QuestionsController extends Controller
     /**
      * Return a collection of questions with the available answers.
      *
-     * @return   QuestionResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
