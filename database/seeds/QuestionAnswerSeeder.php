@@ -22,7 +22,6 @@ class QuestionAnswerSeeder extends Seeder
                 'answers'  => [
                     'Dine-In',
                     'Carry-Out',
-                    'Delivery',
                 ],
             ],
             [
@@ -71,15 +70,6 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Ethnicity?',
-                'answers'  => [
-                    'Mexican',
-                    'Caucasian',
-                    'Asian',
-                    'Prefer not to say..',
-                ],
-            ],
-            [
                 'question' => 'In terms of spicy, how much of a wimp are you?',
                 'answers'  => [
                     'Newborn (Mild)',
@@ -100,7 +90,7 @@ class QuestionAnswerSeeder extends Seeder
             [
                 'question' => 'What is the chemical formula for Table Salt?',
                 'answers'  => [
-                    'N2',
+                    'No Salt please',
                     'CO2',
                     'NaCL',
                     'H2O',
