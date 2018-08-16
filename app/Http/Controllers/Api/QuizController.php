@@ -22,7 +22,7 @@ class QuizController extends Controller
         
         Session::put('restaurants_weights', $restaurants);
        
-        return Session::get('restaurants_weights.0');
+        return Session::get('restaurants_weights');
     }
 
     /**
