@@ -26,9 +26,9 @@
             <img src="{{ asset('img/quizknows.png') }}" alt="Quiz Knows Logo" width="200" height="50">
             <br><br>
             <strong>Quiz Knows</strong> by
-            <a href="https://github.com/ahinkle">Andrew Hinkle</a>,
+            <a href="https://github.com/ahinkle">Andy Hinkle</a>,
             <a href="https://github.com/DaltonMcCleery">Dalton McCleery</a>,
-            and Sam Kuban.
+            <a href="https://twitter.com/samkuban">and Sam Kuban</a>.
         </p>
     </div>
 </footer>
