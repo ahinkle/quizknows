@@ -13,10 +13,9 @@ class QuizController extends Controller
     /**
      * Initialize the Quiz.
      *
-     * @param  Request  $Request
-     * @return Request
+     * @return Session
      */
-    public function new(Request $request)
+    public function new()
     {
         $restaurants = Restaurant::get()->toArray();
         
@@ -28,12 +27,11 @@ class QuizController extends Controller
     /**
      * Update the restraunt weights, based upon the users selection.
      *
-     * @param  Request  $Request
      * @param  Answer   $answer
-     * @return Request
+     *
+     * @return Session
      */
-    public function update(Answer $answer, Request $request)
+    public function update(Answer $answer)
     {
-        //
     }
 }
