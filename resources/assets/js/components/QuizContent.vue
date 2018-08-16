@@ -23,7 +23,8 @@
                 questions: [],
                 current_question: '',
                 remaining: '',
-                endpoint: 'api/questions'
+                endpoint: 'api/questions',
+                post_answer: 'api/quiz/answer/'
             };
         },
 
@@ -47,7 +48,10 @@
 
             answerQuestion(question_id, answer_id) {
                 // Store Answer
-                //todo
+                axios.get(this.post_answer + answer_id)
+                    .then(({data}) => {
+                        console.log(data);
+                    });
 
                 // Remove question from remaining question array
                 this.removeQuestion(question_id);

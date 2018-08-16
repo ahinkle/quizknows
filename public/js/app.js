@@ -47966,7 +47966,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             questions: [],
             current_question: '',
             remaining: '',
-            endpoint: 'api/questions'
+            endpoint: 'api/questions',
+            post_answer: 'api/quiz/answer/'
         };
     },
     mounted: function mounted() {
@@ -47991,7 +47992,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         answerQuestion: function answerQuestion(question_id, answer_id) {
             // Store Answer
-            //todo
+            axios.get(this.post_answer + answer_id).then(function (_ref2) {
+                var data = _ref2.data;
+
+                console.log(data);
+            });
 
             // Remove question from remaining question array
             this.removeQuestion(question_id);

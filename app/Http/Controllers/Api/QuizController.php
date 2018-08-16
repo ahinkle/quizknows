@@ -27,9 +27,9 @@ class QuizController extends Controller
     /**
      * Update the restraunt weights, based upon the users selection.
      *
-     * @param  Answer   $answer
+     * @param  Answer $answer
      *
-     * @return Session
+     * @return mixed
      */
     public function update(Answer $answer)
     {
