@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content" v-if="showQuiz">
         <p class="title has-text-centered">{{ current_question.question }}</p>
         <div class="columns is-centered" v-for="answer in current_question.answers">
             <div class="column is-desktop is-half-desktop" style="word-wrap: break-word">
@@ -12,6 +12,10 @@
         <p class="has-text-centered">
             Remaining Questions: {{ remaining }}
         </p>
+    </div>
+    <div class="content" v-else>
+        <p class="title has-text-centered">Your Result Is...</p>
+        <p class="title has-text-centered"> Test</p>
     </div>
 </template>
 
@@ -30,13 +34,13 @@
             };
         },
 
-        mounted() {
-            console.log('Quiz Component mounted')
-        },
+  mounted() {
+    console.log("Quiz Component mounted");
+  },
 
-        created() {
-            this.fetch();
-        },
+  created() {
+    this.fetch();
+  },
 
         methods: {
             fetch() {
@@ -77,6 +81,7 @@
                 // Check for more questions
                 if (Object.keys(this.questions).length === 0) {
                     // no more question, get result
+                    this.showQuiz = false;
                     console.log(this.weights);
                 } else {
                     // Access the next Question

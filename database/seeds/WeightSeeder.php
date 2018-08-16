@@ -1041,7 +1041,7 @@ class WeightSeeder extends Seeder
                 '25' => 5 // O'Charley’s Restaurant & Bar
             ],
             [
-                'answer_id' => 33, // The kind I breathe
+                'answer_id' => 37, // The kind I breathe
                 '1' => 10, // Azzip Pizza
                 '2' => 5, // Cavanaughs
                 '3' => 10, // Bru Burger Bar
@@ -1069,7 +1069,7 @@ class WeightSeeder extends Seeder
                 '25' => 15 // O'Charley’s Restaurant & Bar
             ],
             [
-                'answer_id' => 34, // Dimly-lit Dungeons
+                'answer_id' => 38, // Dimly-lit Dungeons
                 '1' => 0, // Azzip Pizza
                 '2' => 5, // Cavanaughs
                 '3' => 15, // Bru Burger Bar
