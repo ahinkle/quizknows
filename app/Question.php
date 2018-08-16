@@ -12,4 +12,13 @@ class Question extends Model
      * @var array
      */
     protected $fillable = ['question'];
+
+    /**
+     * Returns the Answers to each of the questions.
+     *
+     */
+    public function Answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }
