@@ -11,7 +11,7 @@ class Answer extends Model
      *
      * @var array
      */
-    protected $fillable = ['answer', 'restaurant_weights'];
+    protected $fillable = ['answer', 'restaurant_weights', 'question_id'];
 
     /**
      * The attributes that should be cast to native types.
