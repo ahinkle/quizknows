@@ -15,3 +15,5 @@ use Illuminate\Http\Request;
 
 Route::resource('questions', 'Api\QuestionsController')
     ->only(['index', 'show']);
+
+Route::get('quiz/new', 'Api\QuizController@new');
