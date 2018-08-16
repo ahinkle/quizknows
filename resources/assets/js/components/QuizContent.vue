@@ -41,7 +41,7 @@
                     .then(({data}) => {
                         this.questions = data.data;
                         this.current_question = this.questions[0];
-                        this.remaining = this.questions.length
+                        this.remaining = this.questions.length - 1
                     });
             },
 
@@ -65,12 +65,8 @@
                 } else {
                     // Access the next Question
                     this.current_question = this.questions[0];
-                    this.remaining = this.questions.length
+                    this.remaining = this.questions.length - 1
                 }
-            },
-
-            nextQuestion() {
-
             }
         }
     }

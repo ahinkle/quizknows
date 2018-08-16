@@ -47986,7 +47986,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 _this.questions = data.data;
                 _this.current_question = _this.questions[0];
-                _this.remaining = _this.questions.length;
+                _this.remaining = _this.questions.length - 1;
             });
         },
         answerQuestion: function answerQuestion(question_id, answer_id) {
@@ -48008,10 +48008,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 // Access the next Question
                 this.current_question = this.questions[0];
-                this.remaining = this.questions.length;
+                this.remaining = this.questions.length - 1;
             }
-        },
-        nextQuestion: function nextQuestion() {}
+        }
     }
 });
 
