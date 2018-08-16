@@ -47959,64 +47959,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            questions: [],
-            current_question: '',
-            remaining: '',
-            endpoint: 'api/questions',
-            post_answer: 'api/quiz/answer/'
-        };
+  data: function data() {
+    return {
+      showQuiz: true,
+      questions: [],
+      current_question: "",
+      remaining: "",
+      endpoint: "api/questions",
+      post_answer: "api/quiz/answer/"
+    };
+  },
+  mounted: function mounted() {
+    console.log("Quiz Component mounted");
+  },
+  created: function created() {
+    this.fetch();
+  },
+
+
+  methods: {
+    fetch: function fetch() {
+      var _this = this;
+
+      axios.get(this.endpoint).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.questions = data.data;
+        _this.current_question = _this.questions[0];
+        _this.remaining = _this.questions.length - 1;
+      });
     },
-    mounted: function mounted() {
-        console.log('Quiz Component mounted');
+    answerQuestion: function answerQuestion(question_id, answer_id) {
+      // Store Answer
+      axios.get(this.post_answer + answer_id).then(function (_ref2) {
+        var data = _ref2.data;
+
+        console.log(data);
+      });
+
+      // Remove question from remaining question array
+      this.removeQuestion(question_id);
     },
-    created: function created() {
-        this.fetch();
-    },
+    removeQuestion: function removeQuestion(question_id) {
+      this.questions = _.remove(this.questions, function (question) {
+        return question.id !== question_id;
+      });
 
-
-    methods: {
-        fetch: function fetch() {
-            var _this = this;
-
-            axios.get(this.endpoint).then(function (_ref) {
-                var data = _ref.data;
-
-                _this.questions = data.data;
-                _this.current_question = _this.questions[0];
-                _this.remaining = _this.questions.length - 1;
-            });
-        },
-        answerQuestion: function answerQuestion(question_id, answer_id) {
-            // Store Answer
-            axios.get(this.post_answer + answer_id).then(function (_ref2) {
-                var data = _ref2.data;
-
-                console.log(data);
-            });
-
-            // Remove question from remaining question array
-            this.removeQuestion(question_id);
-        },
-        removeQuestion: function removeQuestion(question_id) {
-            this.questions = _.remove(this.questions, function (question) {
-                return question.id !== question_id;
-            });
-
-            // Check for more questions
-            if (Object.keys(this.questions).length === 0) {
-                // no more question, get result
-                alert('end');
-            } else {
-                // Access the next Question
-                this.current_question = this.questions[0];
-                this.remaining = this.questions.length - 1;
-            }
-        }
+      // Check for more questions
+      if (Object.keys(this.questions).length === 0) {
+        // no more question, get result
+        this.showQuiz = false;
+      } else {
+        // Access the next Question
+        this.current_question = this.questions[0];
+        this.remaining = this.questions.length - 1;
+      }
     }
+  }
 });
 
 /***/ }),
@@ -48027,59 +48032,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content" },
-    [
-      _c("p", { staticClass: "title has-text-centered" }, [
-        _vm._v(_vm._s(_vm.current_question.question))
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.current_question.answers, function(answer) {
-        return _c("div", { staticClass: "columns is-centered" }, [
-          _c(
-            "div",
-            {
-              staticClass: "column is-desktop is-half-desktop",
-              staticStyle: { "word-wrap": "break-word" }
-            },
-            [
+  return _vm.showQuiz
+    ? _c(
+        "div",
+        { staticClass: "content" },
+        [
+          _c("p", { staticClass: "title has-text-centered" }, [
+            _vm._v(_vm._s(_vm.current_question.question))
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.current_question.answers, function(answer) {
+            return _c("div", { staticClass: "columns is-centered" }, [
               _c(
-                "a",
+                "div",
                 {
-                  staticClass: "button is-large is-fullwidth",
-                  staticStyle: {
-                    color: "black",
-                    display: "inline-table",
-                    "white-space": "normal"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.answerQuestion(_vm.current_question.id, answer.id)
-                    }
-                  }
+                  staticClass: "column is-desktop is-half-desktop",
+                  staticStyle: { "word-wrap": "break-word" }
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(answer.answer) +
-                      "\n            "
+                  _c(
+                    "a",
+                    {
+                      staticClass: "button is-large is-fullwidth",
+                      staticStyle: {
+                        color: "black",
+                        display: "inline-table",
+                        "white-space": "normal"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.answerQuestion(_vm.current_question.id, answer.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(answer.answer) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ]
               )
-            ]
-          )
-        ])
-      }),
-      _vm._v(" "),
-      _c("p", { staticClass: "has-text-centered" }, [
-        _vm._v(
-          "\n        Remaining Questions: " + _vm._s(_vm.remaining) + "\n    "
-        )
+            ])
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "has-text-centered" }, [
+            _vm._v(
+              "\n        Remaining Questions: " +
+                _vm._s(_vm.remaining) +
+                "\n    "
+            )
+          ])
+        ],
+        2
+      )
+    : _c("div", { staticClass: "content" }, [
+        _c("p", { staticClass: "title has-text-centered" }, [
+          _vm._v("Your Result Is...")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "title has-text-centered" }, [_vm._v(" Test")])
       ])
-    ],
-    2
-  )
 }
 var staticRenderFns = []
 render._withStripped = true
