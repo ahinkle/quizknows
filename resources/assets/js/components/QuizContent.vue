@@ -15,7 +15,7 @@
     </div>
     <div class="content" v-else>
         <p class="title has-text-centered">Your Result Is...</p>
-        <p class="title has-text-centered">TEST</p>
+        <p class="title has-text-centered">{{ result }}</p>
     </div>
 </template>
 
@@ -31,7 +31,8 @@
                 endpoint: 'api/questions',
                 weights_endpoint: 'api/quiz/new',
                 post_answer: 'api/quiz/answer',
-                weights: []
+                weights: [],
+                result: ''
             };
         },
 
@@ -82,8 +83,12 @@
                 // Check for more questions
                 if (Object.keys(this.questions).length === 0) {
                     // no more question, get result
+
+                    // 1. Sort `this.weights` by weight (remember, it's an Object)
+                    // 2. store the top weighted Object into another variable and display it
+
+                    this.result = 'TODO';
                     this.showQuiz = false;
-                    console.log(this.weights);
                 } else {
                     // Access the next Question
                     this.current_question = this.questions[0];

@@ -47974,7 +47974,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             endpoint: 'api/questions',
             weights_endpoint: 'api/quiz/new',
             post_answer: 'api/quiz/answer',
-            weights: []
+            weights: [],
+            result: ''
         };
     },
     mounted: function mounted() {
@@ -48029,8 +48030,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Check for more questions
             if (Object.keys(this.questions).length === 0) {
                 // no more question, get result
+
+                // 1. Sort `this.weights` by weight (remember, it's an Object)
+                // 2. store the top weighted Object into another variable and display it
+
+                this.result = 'TODO';
                 this.showQuiz = false;
-                console.log(this.weights);
             } else {
                 // Access the next Question
                 this.current_question = this.questions[0];
@@ -48109,7 +48114,9 @@ var render = function() {
           _vm._v("Your Result Is...")
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "title has-text-centered" }, [_vm._v("TEST")])
+        _c("p", { staticClass: "title has-text-centered" }, [
+          _vm._v(_vm._s(_vm.result))
+        ])
       ])
 }
 var staticRenderFns = []
