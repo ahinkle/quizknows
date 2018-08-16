@@ -20,6 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();
+            $table->integer('weight')->default(0);
             $table->timestamps();
         });
     }
