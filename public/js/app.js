@@ -47959,10 +47959,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            showQuiz: true,
             questions: [],
             current_question: '',
             remaining: '',
@@ -47973,7 +47978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        console.log('Quiz Component mounted');
+        console.log("Quiz Component mounted");
     },
     created: function created() {
         this.fetch();
@@ -48024,6 +48029,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Check for more questions
             if (Object.keys(this.questions).length === 0) {
                 // no more question, get result
+                this.showQuiz = false;
                 console.log(this.weights);
             } else {
                 // Access the next Question
@@ -48042,59 +48048,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content" },
-    [
-      _c("p", { staticClass: "title has-text-centered" }, [
-        _vm._v(_vm._s(_vm.current_question.question))
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.current_question.answers, function(answer) {
-        return _c("div", { staticClass: "columns is-centered" }, [
-          _c(
-            "div",
-            {
-              staticClass: "column is-desktop is-half-desktop",
-              staticStyle: { "word-wrap": "break-word" }
-            },
-            [
+  return _vm.showQuiz
+    ? _c(
+        "div",
+        { staticClass: "content" },
+        [
+          _c("p", { staticClass: "title has-text-centered" }, [
+            _vm._v(_vm._s(_vm.current_question.question))
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.current_question.answers, function(answer) {
+            return _c("div", { staticClass: "columns is-centered" }, [
               _c(
-                "a",
+                "div",
                 {
-                  staticClass: "button is-large is-fullwidth",
-                  staticStyle: {
-                    color: "black",
-                    display: "inline-table",
-                    "white-space": "normal"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.answerQuestion(_vm.current_question.id, answer.id)
-                    }
-                  }
+                  staticClass: "column is-desktop is-half-desktop",
+                  staticStyle: { "word-wrap": "break-word" }
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(answer.answer) +
-                      "\n            "
+                  _c(
+                    "a",
+                    {
+                      staticClass: "button is-large is-fullwidth",
+                      staticStyle: {
+                        color: "black",
+                        display: "inline-table",
+                        "white-space": "normal"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.answerQuestion(_vm.current_question.id, answer.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(answer.answer) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ]
               )
-            ]
-          )
-        ])
-      }),
-      _vm._v(" "),
-      _c("p", { staticClass: "has-text-centered" }, [
-        _vm._v(
-          "\n        Remaining Questions: " + _vm._s(_vm.remaining) + "\n    "
-        )
+            ])
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "has-text-centered" }, [
+            _vm._v(
+              "\n        Remaining Questions: " +
+                _vm._s(_vm.remaining) +
+                "\n    "
+            )
+          ])
+        ],
+        2
+      )
+    : _c("div", { staticClass: "content" }, [
+        _c("p", { staticClass: "title has-text-centered" }, [
+          _vm._v("Your Result Is...")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "title has-text-centered" }, [_vm._v("TEST")])
       ])
-    ],
-    2
-  )
 }
 var staticRenderFns = []
 render._withStripped = true

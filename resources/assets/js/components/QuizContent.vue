@@ -15,7 +15,7 @@
     </div>
     <div class="content" v-else>
         <p class="title has-text-centered">Your Result Is...</p>
-        <p class="title has-text-centered"> Test</p>
+        <p class="title has-text-centered">TEST</p>
     </div>
 </template>
 
@@ -24,6 +24,7 @@
 
         data() {
             return {
+                showQuiz: true,
                 questions: [],
                 current_question: '',
                 remaining: '',
@@ -34,13 +35,13 @@
             };
         },
 
-  mounted() {
-    console.log("Quiz Component mounted");
-  },
+        mounted() {
+            console.log("Quiz Component mounted");
+        },
 
-  created() {
-    this.fetch();
-  },
+        created() {
+            this.fetch();
+        },
 
         methods: {
             fetch() {
