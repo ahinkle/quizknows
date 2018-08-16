@@ -22,7 +22,6 @@ class QuestionAnswerSeeder extends Seeder
                 'answers'  => [
                     'Dine-In',
                     'Carry-Out',
-                    'Delivery',
                 ],
             ],
             [
