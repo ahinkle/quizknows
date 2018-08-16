@@ -11,5 +11,5 @@ class Restaurant extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'address', 'city', 'state', 'zipcode'];
+    protected $fillable = ['name', 'address', 'city', 'state', 'zipcode','weight'];
 }
