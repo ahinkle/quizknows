@@ -13,10 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::resource('/question-answers', 'QuizController', [
-    'except' => ['create', 'destroy']
-]);
+Route::resource('questions', 'Api\QuestionsController')
+    ->only(['index', 'show']);

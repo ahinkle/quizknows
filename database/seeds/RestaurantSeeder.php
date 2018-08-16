@@ -115,13 +115,13 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'La Campirana',
-                'address' => '',
+                'address' => '724 N Burkhardt Rd',
                 'city' => 'Evansville',
                 'state' => 'IN',
                 'zipcode' => '47715',
             ],
             [
-                'name' => 'Comfort by the Cross Eyed Cricket',
+                'name' => 'COMFORT by the Cross-Eyed Cricket',
                 'address' => '230 Main St',
                 'city' => 'Evansville',
                 'state' => 'IN',
@@ -129,7 +129,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Deerhead Pizza',
-                'address' => '5048, 222 E Columbia St',
+                'address' => '5048, 222 E Columbia St,',
                 'city' => 'Evansville',
                 'state' => 'IN',
                 'zipcode' => '47711',
@@ -150,7 +150,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Kanpai',
-                'address' => '4593 Washington Ave',
+                'address' => '4593 Washington Ave,',
                 'city' => 'Evansville',
                 'state' => 'IN',
                 'zipcode' => '47714',
@@ -163,19 +163,12 @@ class RestaurantSeeder extends Seeder
                 'zipcode' => '47708',
             ],
             [
-                'name' => 'Waltons International Comfort Food',
-                'address' => '956 Parrett St',
-                'city' => 'Evansville',
-                'state' => 'IN',
-                'zipcode' => '47713',
-            ],
-            [
-                'name' => 'Hot Heads Burritos',
+                'name' => 'Hot Head Burritos',
                 'address' => '5625 Pearl Dr',
                 'city' => 'Evansville',
                 'state' => 'IN',
                 'zipcode' => '47712',
-            ]
+            ],
         ];
 
         foreach ($restraunts as $restraunt) {
