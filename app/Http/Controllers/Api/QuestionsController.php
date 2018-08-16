@@ -12,7 +12,7 @@ class QuestionsController extends Controller
     /**
      * Return a collection of questions with the available answers.
      *
-     * @return QuestionResource
+     * @return   QuestionResource
      */
     public function index()
     {
@@ -21,5 +21,16 @@ class QuestionsController extends Controller
             ->get();
 
         return QuestionResource::collection($questions);
+    }
+
+    /**
+     * Fetch and return a single question.
+     *
+     * @param   Question   $Question
+     * @return  QuestionResource
+     */
+    public function show(Question $Question)
+    {
+        return new QuestionResource($Question);
     }
 }

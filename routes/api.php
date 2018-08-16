@@ -14,4 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('questions', 'Api\QuestionsController')
-    ->only(['index']);
+    ->only(['index', 'show']);
