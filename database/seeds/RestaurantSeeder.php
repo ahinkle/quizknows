@@ -169,6 +169,28 @@ class RestaurantSeeder extends Seeder
                 'state' => 'IN',
                 'zipcode' => '47712',
             ],
+            [
+                'name' => 'Lic\'s Deli & Ice Cream',
+                'address' => '11 NW 5th St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47708',
+            ],
+            [
+                'name' => 'Five Guys',
+                'address' => '5402 E Indiana St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+            [
+                'name' => 'O\'Charley’s Restaurant & Bar ',
+                'address' => '7301 E Indiana St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+
         ];
 
         foreach ($restraunts as $restraunt) {
