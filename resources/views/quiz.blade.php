@@ -14,5 +14,7 @@
             </article>
         </div>
     </div>
-    <div class="hero-body"></div>
+    <div class="hero-body">
+        {{--<twitter-follower-count></twitter-follower-count>--}}
+    </div>
 @endsection

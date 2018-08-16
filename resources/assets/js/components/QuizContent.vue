@@ -15,65 +15,86 @@
     </div>
     <div class="content" v-else>
         <p class="title has-text-centered">Your Result Is...</p>
-        <p class="title has-text-centered"> Test</p>
+        <p class="title has-text-centered">{{ result }}</p>
     </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      showQuiz: true,
-      questions: [],
-      current_question: "",
-      remaining: "",
-      endpoint: "api/questions",
-      post_answer: "api/quiz/answer/"
-    };
-  },
+    export default {
 
-  mounted() {
-    console.log("Quiz Component mounted");
-  },
+        data() {
+            return {
+                showQuiz: true,
+                questions: [],
+                current_question: '',
+                remaining: '',
+                endpoint: 'api/questions',
+                weights_endpoint: 'api/quiz/new',
+                post_answer: 'api/quiz/answer',
+                weights: [],
+                result: ''
+            };
+        },
 
-  created() {
-    this.fetch();
-  },
+        mounted() {
+            console.log("Quiz Component mounted");
+        },
 
-  methods: {
-    fetch() {
-      axios.get(this.endpoint).then(({ data }) => {
-        this.questions = data.data;
-        this.current_question = this.questions[0];
-        this.remaining = this.questions.length - 1;
-      });
-    },
+        created() {
+            this.fetch();
+        },
 
-    answerQuestion(question_id, answer_id) {
-      // Store Answer
-      axios.get(this.post_answer + answer_id).then(({ data }) => {
-        console.log(data);
-      });
+        methods: {
+            fetch() {
+                // Initialize Weights
+                axios.get(this.weights_endpoint)
+                    .then(({data}) => {
+                        this.weights = data;
+                    });
 
-      // Remove question from remaining question array
-      this.removeQuestion(question_id);
-    },
+                // Load Questions & Answers
+                axios.get(this.endpoint)
+                    .then(({data}) => {
+                        this.questions = data.data;
+                        this.current_question = this.questions[0];
+                        this.remaining = this.questions.length - 1
+                    });
+            },
 
-    removeQuestion(question_id) {
-      this.questions = _.remove(this.questions, function(question) {
-        return question.id !== question_id;
-      });
+            answerQuestion(question_id, answer_id) {
+                // Store Answer
+                axios.post(this.post_answer, {
+                        answer: answer_id,
+                        weights: this.weights
+                    })
+                    .then(({data}) => {
+                        this.weights = data;
+                    });
 
-      // Check for more questions
-      if (Object.keys(this.questions).length === 0) {
-        // no more question, get result
-        this.showQuiz = false;
-      } else {
-        // Access the next Question
-        this.current_question = this.questions[0];
-        this.remaining = this.questions.length - 1;
-      }
+                // Remove question from remaining question array
+                this.removeQuestion(question_id);
+            },
+
+            removeQuestion(question_id) {
+                this.questions = _.remove(this.questions, function (question) {
+                    return question.id !== question_id;
+                });
+
+                // Check for more questions
+                if (Object.keys(this.questions).length === 0) {
+                    // no more question, get result
+
+                    // 1. Sort `this.weights` by weight (remember, it's an Object)
+                    // 2. store the top weighted Object into another variable and display it
+
+                    this.result = 'TODO';
+                    this.showQuiz = false;
+                } else {
+                    // Access the next Question
+                    this.current_question = this.questions[0];
+                    this.remaining = this.questions.length - 1
+                }
+            }
+        }
     }
-  }
-};
 </script>

@@ -2,41 +2,51 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Classes\Cookie;
+use App\Restaurant;
+use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Restaurant;
 use App\Answer;
 use Session;
 
 class QuizController extends Controller
 {
     /**
-     * Initialize the Quiz by storing restaurant weights to a session.
+     * Initialize the Quiz by creating initial restaurant weights
      *
-     * @return Session
+     * @return mixed
      */
     public function new()
     {
-        $restaurants = Restaurant::get()->keyBy('id')->toArray();
-        
-        Session::put('restaurants_weights', $restaurants);
-       
-        return Session::get('restaurants_weights');
+        return Restaurant::get()->keyBy('id')->toArray();
     }
 
     /**
      * Update the restraunt weights, based upon the users selection.
      *
-     * @param  Answer $answer
-     *
+     * @param Request $request
      * @return mixed
      */
-    public function update(Answer $answer)
+    public function update(Request $request)
     {
-        foreach ($answer->restaurant_weights as $restaurantsWeight) {
-            Session::put('restaurants_weights.'. $restaurantsWeight['restaurant_id'] .'.weight', $restaurantsWeight['weight']);
+        // Get Answer
+        $answer = Answer::find($request->answer);
+        $weights = $request->weights;
+
+        foreach ($answer->restaurant_weights as $key => $restaurantsWeight) {
+            if (array_key_exists($key, $weights)) {
+                // Add previous Weight value to new Weight
+                $new_weight = $restaurantsWeight + $weights[$key]['weight'];
+            } else {
+                // Create new Weight value from nothing
+                $new_weight = $restaurantsWeight;
+            }
+
+            $weights[$key]['weight'] = $new_weight;
         }
 
-        return Session::get('restaurants_weights');
+        // Update Cookie
+        return $weights;
     }
 }
