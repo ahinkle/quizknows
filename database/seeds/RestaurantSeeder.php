@@ -113,6 +113,69 @@ class RestaurantSeeder extends Seeder
                 'state' => 'IN',
                 'zipcode' => '47715',
             ],
+            [
+                'name' => 'La Campirana',
+                'address' => '',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+            [
+                'name' => 'Comfort by the Cross Eyed Cricket',
+                'address' => '230 Main St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47708',
+            ],
+            [
+                'name' => 'Deerhead Pizza',
+                'address' => '5048, 222 E Columbia St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47711',
+            ],
+            [
+                'name' => 'Bar Louie',
+                'address' => '7700 Eagle Crest Blvd',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+            [
+                'name' => 'Pangea Kitchen',
+                'address' => '111 S Green River Rd',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+            [
+                'name' => 'Kanpai',
+                'address' => '4593 Washington Ave',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47714',
+            ],
+            [
+                'name' => 'Angelo\'s',
+                'address' => '305 Main St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47708',
+            ],
+            [
+                'name' => 'Waltons International Comfort Food',
+                'address' => '956 Parrett St',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47713',
+            ],
+            [
+                'name' => 'Hot Heads Burritos',
+                'address' => '5625 Pearl Dr',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47712',
+            ]
         ];
 
         foreach ($restraunts as $restraunt) {
