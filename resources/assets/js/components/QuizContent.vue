@@ -63,7 +63,6 @@
                     })
                     .then(({data}) => {
                         this.weights = data;
-                        console.log(this.weights);
                     });
 
                 // Remove question from remaining question array

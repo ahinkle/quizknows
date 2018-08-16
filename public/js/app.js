@@ -14023,7 +14023,6 @@ window.Vue = __webpack_require__(37);
  */
 
 Vue.component('quiz-content', __webpack_require__(46));
-Vue.component('twitter-follower-count', __webpack_require__(49));
 
 // Initialize Buefy CSS Library
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
@@ -48012,7 +48011,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref3.data;
 
                 _this2.weights = data;
-                console.log(_this2.weights);
             });
 
             // Remove question from remaining question array
@@ -48109,119 +48107,9 @@ if (false) {
 }
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(11)
-/* script */
-var __vue_script__ = __webpack_require__(50)
-/* template */
-var __vue_template__ = __webpack_require__(51)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/TwitterStats.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-909e14ba", Component.options)
-  } else {
-    hotAPI.reload("data-v-909e14ba", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            followers: 0,
-            endpoint: 'https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=QuizKnows'
-        };
-    },
-    mounted: function mounted() {
-        console.log('Twitter Statistic Component mounted');
-    },
-    created: function created() {
-        this.fetch();
-    },
-
-
-    methods: {
-        fetch: function fetch() {
-            var _this = this;
-
-            axios.get(this.endpoint).then(function (_ref) {
-                var data = _ref.data;
-
-                alert(data[0]['followers_count']);
-                _this.followers = data[0]['followers_count'];
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content" }, [
-    _c("p", { staticClass: "title has-text-centered" }, [
-      _vm._v(_vm._s(_vm.followers))
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-909e14ba", module.exports)
-  }
-}
-
-/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
 /* 52 */
 /***/ (function(module, exports) {
 
