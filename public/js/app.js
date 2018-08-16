@@ -48034,8 +48034,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // 1. Sort `this.weights` by weight (remember, it's an Object)
         // 2. store the top weighted Object into another variable and display it
 
-        this.result = "TODO";
         this.weights = this.sortProperty(this.weights);
+        this.result = this.weights[0].name;
         console.log(this.weights);
         this.showQuiz = false;
       } else {
@@ -48045,7 +48045,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     sortProperty: function sortProperty(weights) {
-      return _.orderBy(weights, "weight", "asc");
+      return _.orderBy(weights, "weight", "desc");
     }
   }
 });

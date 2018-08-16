@@ -85,8 +85,8 @@ export default {
         // 1. Sort `this.weights` by weight (remember, it's an Object)
         // 2. store the top weighted Object into another variable and display it
 
-        this.result = "TODO";
         this.weights = this.sortProperty(this.weights);
+        this.result = this.weights[0].name;
         console.log(this.weights);
         this.showQuiz = false;
       } else {
