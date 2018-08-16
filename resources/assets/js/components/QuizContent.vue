@@ -24,7 +24,9 @@
                 current_question: '',
                 remaining: '',
                 endpoint: 'api/questions',
-                post_answer: 'api/quiz/answer/'
+                weights_endpoint: 'api/quiz/new',
+                post_answer: 'api/quiz/answer',
+                weights: []
             };
         },
 
@@ -38,6 +40,13 @@
 
         methods: {
             fetch() {
+                // Initialize Weights
+                axios.get(this.weights_endpoint)
+                    .then(({data}) => {
+                        this.weights = data;
+                    });
+
+                // Load Questions & Answers
                 axios.get(this.endpoint)
                     .then(({data}) => {
                         this.questions = data.data;
@@ -48,9 +57,13 @@
 
             answerQuestion(question_id, answer_id) {
                 // Store Answer
-                axios.get(this.post_answer + answer_id)
+                axios.post(this.post_answer, {
+                        answer: answer_id,
+                        weights: this.weights
+                    })
                     .then(({data}) => {
-                        console.log(data);
+                        this.weights = data;
+                        console.log(this.weights);
                     });
 
                 // Remove question from remaining question array
@@ -65,7 +78,7 @@
                 // Check for more questions
                 if (Object.keys(this.questions).length === 0) {
                     // no more question, get result
-                    alert('end');
+                    console.log(this.weights);
                 } else {
                     // Access the next Question
                     this.current_question = this.questions[0];
