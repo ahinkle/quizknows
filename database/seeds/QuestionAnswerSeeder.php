@@ -71,15 +71,6 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
             [
-                'question' => 'Ethnicity?',
-                'answers'  => [
-                    'Mexican',
-                    'Caucasian',
-                    'Asian',
-                    'Prefer not to say..',
-                ],
-            ],
-            [
                 'question' => 'In terms of spicy, how much of a wimp are you?',
                 'answers'  => [
                     'Newborn (Mild)',
