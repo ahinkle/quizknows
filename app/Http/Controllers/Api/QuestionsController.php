@@ -16,9 +16,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::with('Answers')
-            ->inRandomOrder()
-            ->get();
+        $questions = Question::inRandomOrder()->get();
 
         return QuestionResource::collection($questions);
     }
