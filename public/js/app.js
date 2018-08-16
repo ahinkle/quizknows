@@ -13913,7 +13913,7 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(45));
+Vue.component('quiz-content', __webpack_require__(45));
 
 // Initialize Buefy CSS Library
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
@@ -47806,7 +47806,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/QuizContent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47815,9 +47815,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-3b58f1fd", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-3b58f1fd", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47958,10 +47958,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            questions: [],
+            current_question: '',
+            remaining: '',
+            endpoint: 'api/questions',
+            post_answer: 'api/quiz/answer/'
+        };
+    },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        console.log('Quiz Component mounted');
+    },
+    created: function created() {
+        this.fetch();
+    },
+
+
+    methods: {
+        fetch: function fetch() {
+            var _this = this;
+
+            axios.get(this.endpoint).then(function (_ref) {
+                var data = _ref.data;
+
+                _this.questions = data.data;
+                _this.current_question = _this.questions[0];
+                _this.remaining = _this.questions.length - 1;
+            });
+        },
+        answerQuestion: function answerQuestion(question_id, answer_id) {
+            // Store Answer
+            axios.get(this.post_answer + answer_id).then(function (_ref2) {
+                var data = _ref2.data;
+
+                console.log(data);
+            });
+
+            // Remove question from remaining question array
+            this.removeQuestion(question_id);
+        },
+        removeQuestion: function removeQuestion(question_id) {
+            this.questions = _.remove(this.questions, function (question) {
+                return question.id !== question_id;
+            });
+
+            // Check for more questions
+            if (Object.keys(this.questions).length === 0) {
+                // no more question, get result
+                alert('end');
+            } else {
+                // Access the next Question
+                this.current_question = this.questions[0];
+                this.remaining = this.questions.length - 1;
+            }
+        }
     }
 });
 
@@ -47973,38 +48027,67 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
+  return _c(
+    "div",
+    { staticClass: "content" },
+    [
+      _c("p", { staticClass: "title has-text-centered" }, [
+        _vm._v(_vm._s(_vm.current_question.question))
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.current_question.answers, function(answer) {
+        return _c("div", { staticClass: "columns is-centered" }, [
+          _c(
+            "div",
+            {
+              staticClass: "column is-desktop is-half-desktop",
+              staticStyle: { "word-wrap": "break-word" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "button is-large is-fullwidth",
+                  staticStyle: {
+                    color: "black",
+                    display: "inline-table",
+                    "white-space": "normal"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.answerQuestion(_vm.current_question.id, answer.id)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(answer.answer) +
+                      "\n            "
+                  )
+                ]
               )
-            ])
-          ])
+            ]
+          )
         ])
+      }),
+      _vm._v(" "),
+      _c("p", { staticClass: "has-text-centered" }, [
+        _vm._v(
+          "\n        Remaining Questions: " + _vm._s(_vm.remaining) + "\n    "
+        )
       ])
-    ])
-  }
-]
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3b58f1fd", module.exports)
   }
 }
 

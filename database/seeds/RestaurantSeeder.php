@@ -135,6 +135,13 @@ class RestaurantSeeder extends Seeder
                 'zipcode' => '47711',
             ],
             [
+                'name' => 'Bar Louie',
+                'address' => '7700 Eagle Crest Blvd',
+                'city' => 'Evansville',
+                'state' => 'IN',
+                'zipcode' => '47715',
+            ],
+            [
                 'name' => 'Pangea Kitchen',
                 'address' => '111 S Green River Rd',
                 'city' => 'Evansville',

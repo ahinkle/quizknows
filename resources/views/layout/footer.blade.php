@@ -1,4 +1,4 @@
-<footer class="footer notification" style="bottom: 0; position: absolute; width: 100%;">
+<footer class="footer notification">
 
     <div class="content has-text-centered">
         <div class="level is-mobile">
@@ -18,12 +18,6 @@
                 <div>
                     <p class="heading">Followers</p>
                     <p class="title">456K</p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Likes</p>
-                    <p class="title">789</p>
                 </div>
             </div>
         </div>

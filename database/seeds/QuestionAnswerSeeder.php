@@ -70,6 +70,51 @@ class QuestionAnswerSeeder extends Seeder
                     'Special Occasion',
                 ],
             ],
+            [
+                'question' => 'Ethnicity?',
+                'answers'  => [
+                    'Mexican',
+                    'Caucasian',
+                    'Asian',
+                    'Prefer not to say..',
+                ],
+            ],
+            [
+                'question' => 'In terms of spicy, how much of a wimp are you?',
+                'answers'  => [
+                    'Newborn (Mild)',
+                    'Toddler (Medium)',
+                    'Adult (Hot)',
+                    'Independent Woman who don\'t need no man (Open Flame)',
+                ],
+            ],
+            [
+                'question' => 'Alcohol?',
+                'answers'  => [
+                    'Yes, please',
+                    'Hard Liquor',
+                    'Water only',
+                    'Fruity Drinks!',
+                ],
+            ],
+            [
+                'question' => 'What is the chemical formula for Table Salt?',
+                'answers'  => [
+                    'N2',
+                    'CO2',
+                    'NaCL',
+                    'H2O',
+                ],
+            ],
+            [
+                'question' => 'What kind of atmosphere do you prefer?',
+                'answers'  => [
+                    'My living room',
+                    'Outdoor seating',
+                    'The kind I can breathe',
+                    'Dimly-lit Dungeons',
+                ],
+            ],
         ];
 
         foreach ($questions as $question) {
