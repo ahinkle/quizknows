@@ -18,11 +18,11 @@ class QuizController extends Controller
      */
     public function new(Request $request)
     {
-        $restaurants = Restaurant::all();
-
+        $restaurants = Restaurant::get()->toArray();
+        
         Session::put('restaurants_weights', $restaurants);
        
-        return Session::get('restaurants_weights');
+        return Session::get('restaurants_weights.0');
     }
 
     /**
