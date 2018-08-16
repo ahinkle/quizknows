@@ -33,5 +33,10 @@ class QuizController extends Controller
      */
     public function update(Answer $answer)
     {
+        foreach ($answer->restaurant_weights as $restaurantsWeight) {
+            Session::put('restaurants_weights.'. $restaurantsWeight['restaurant_id'] .'.weight', $restaurantsWeight['weight']);
+        }
+
+        return Session::get('restaurants_weights');
     }
 }
