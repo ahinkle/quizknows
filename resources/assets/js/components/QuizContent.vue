@@ -86,12 +86,17 @@ export default {
         // 2. store the top weighted Object into another variable and display it
 
         this.result = "TODO";
+        this.weights = this.sortProperty(this.weights);
+        console.log(this.weights);
         this.showQuiz = false;
       } else {
         // Access the next Question
         this.current_question = this.questions[0];
         this.remaining = this.questions.length - 1;
       }
+    },
+    sortProperty(weights) {
+      return _.orderBy(weights, "weight", "desc");
     }
   }
 };
