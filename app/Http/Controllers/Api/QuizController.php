@@ -11,13 +11,13 @@ use Session;
 class QuizController extends Controller
 {
     /**
-     * Initialize the Quiz.
+     * Initialize the Quiz by storing restaurant weights to a session.
      *
      * @return Session
      */
     public function new()
     {
-        $restaurants = Restaurant::get()->toArray();
+        $restaurants = Restaurant::get()->keyBy('id')->toArray();
         
         Session::put('restaurants_weights', $restaurants);
        
