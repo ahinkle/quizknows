@@ -13,6 +13,9 @@ class QuestionAnswerSeeder extends Seeder
      */
     public function run()
     {
+        Question::truncate();
+        Answer::truncate();
+
         $questions = [
             [
                 'question' => 'Dine-In, Carry-out, or Delivery?',
@@ -24,7 +27,7 @@ class QuestionAnswerSeeder extends Seeder
             ],
             [
                 'question' => 'Do you want salad or fries with that?',
-                'answers' => [
+                'answers'  => [
                     'Salad',
                     'Fries',
                     'Yes',
@@ -33,7 +36,7 @@ class QuestionAnswerSeeder extends Seeder
             ],
             [
                 'question' => 'You\'re stranded on a deserted island. Pick one item.',
-                'answers' => [
+                'answers'  => [
                     'Fishing Net',
                     'Giant box of matches',
                     'Cold Beer',
@@ -42,7 +45,7 @@ class QuestionAnswerSeeder extends Seeder
             ],
             [
                 'question' => 'How much money are you willing to spend?',
-                'answers' => [
+                'answers'  => [
                     'Money is no object.',
                     'I almost chose McDonalds, so close to nothing.',
                     'It depends on what I order. I might spend $10, I might spend $20',
@@ -51,7 +54,7 @@ class QuestionAnswerSeeder extends Seeder
             ],
             [
                 'question' => 'Do you want meat?',
-                'answers' => [
+                'answers'  => [
                     'Maybe some lean proteins but nothing heavy.',
                     'I\'m feeling steak or BBQ.',
                     'No way. Animals in my plate? Thanks but no thanks.',
@@ -60,7 +63,7 @@ class QuestionAnswerSeeder extends Seeder
             ],
             [
                 'question' => 'What\'s the occasion?',
-                'answers' => [
+                'answers'  => [
                     'Something Casual',
                     'Date Night',
                     'Bro-ing Out.',
@@ -68,5 +71,18 @@ class QuestionAnswerSeeder extends Seeder
                 ],
             ],
         ];
+
+        foreach ($questions as $question) {
+            $createQuestion = Question::create([
+                'question' => $question['question'],
+            ]);
+            foreach ($question['answers'] as $answer) {
+                Answer::create([
+                    'answer' => $answer,
+                    'restaurant_weights' => [],
+                    'question_id' => $createQuestion->id,
+                ]);
+            }
+        }
     }
 }
