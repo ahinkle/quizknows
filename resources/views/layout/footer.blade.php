@@ -28,7 +28,7 @@
             <strong>Quiz Knows</strong> by
             <a href="https://github.com/ahinkle">Andy Hinkle</a>,
             <a href="https://github.com/DaltonMcCleery">Dalton McCleery</a>,
-            and Sam Kuban.
+            <a href="https://twitter.com/samkuban">and Sam Kuban</a>.
         </p>
     </div>
 </footer>
