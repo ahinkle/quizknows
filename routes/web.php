@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('quiz');
-});
+Route::get('/', 'QuizController@homepage');
 
 Route::get('/result', function () {
     return view('result');
