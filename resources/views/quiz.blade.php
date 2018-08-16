@@ -5,7 +5,11 @@
         <div class="tile is-parent">
             <article class="tile is-child notification is-info">
                 <div class="content">
-                    <quiz-content></quiz-content>
+                    <quiz-content>
+                        <b-message type="is-warning" has-icon>
+                            Loading Quiz...
+                        </b-message>
+                    </quiz-content>
                 </div>
             </article>
         </div>
