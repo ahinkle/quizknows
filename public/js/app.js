@@ -47979,7 +47979,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   mounted: function mounted() {
-    console.log("Quiz Component mounted");
+    //console.log("Quiz Component mounted");
   },
   created: function created() {
     this.fetch();
@@ -48029,14 +48029,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // Check for more questions
       if (Object.keys(this.questions).length === 0) {
-        // no more question, get result
-
-        // 1. Sort `this.weights` by weight (remember, it's an Object)
-        // 2. store the top weighted Object into another variable and display it
-
+        // no more questions, get result
         this.weights = this.sortProperty(this.weights);
         this.result = this.weights[0].name;
-        console.log(this.weights);
         this.showQuiz = false;
       } else {
         // Access the next Question
@@ -48107,7 +48102,7 @@ var render = function() {
           _c("p", { staticClass: "has-text-centered" }, [
             _vm._v(
               "\n        Remaining Questions: " +
-                _vm._s(_vm.remaining) +
+                _vm._s(_vm.remaining + 1) +
                 "\n    "
             )
           ])
