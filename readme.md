@@ -2,11 +2,20 @@
 
 ## Quiz Knows
 
-Quiz Knows is easy to use, lightning fast, and will help you decide where the best place to eat is in Evansville, IN based on your preferences!
+Hungry? Quiz Knows is easy to use, lightning fast, and will help you decide where the best place to eat is in Evansville, IN based on your preferences!
 
 ## Getting Started
 
-Todo
+To install Quizknows:
+```
+cp .env.example .env
+composer install
+npm install
+npm run dev
+php artisan migrate
+php artisan db:seed
+```
+Open the application in your browser and decide what to eat!
 
 ## Frameworks & Libraries
 
