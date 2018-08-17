@@ -10,7 +10,7 @@
             </div>
         </div>
         <p class="has-text-centered">
-            Remaining Questions: {{ remaining }}
+            Remaining Questions: {{ remaining+1 }}
         </p>
     </div>
     <div class="content" v-else>
