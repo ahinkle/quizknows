@@ -23,7 +23,7 @@ class QuizController extends Controller
     }
 
     /**
-     * Update the restraunt weights, based upon the users selection.
+     * Update the restaurant weights, based upon the users selection.
      *
      * @param Request $request
      * @return mixed
@@ -45,6 +45,12 @@ class QuizController extends Controller
 
             $weights[$key]['weight'] = $new_weight;
         }
+
+        // Update Answer Pick Stat
+        Answer::where('id', $request->answer)
+            ->update([
+                'picks' => $answer->picks + 1
+            ]);
 
         // Update Cookie
         return $weights;
