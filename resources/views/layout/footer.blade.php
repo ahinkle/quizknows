@@ -4,20 +4,20 @@
         <div class="level is-mobile">
             <div class="level-item has-text-centered">
                 <div>
-                    <p class="heading">Tweets</p>
-                    <p class="title">3,456</p>
+                    <p class="heading"></p>
+                    <p class="title"></p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
                 <div>
-                    <p class="heading">Following</p>
-                    <p class="title">123</p>
+                    <p class="heading"></p>
+                    <p class="title"></p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
                 <div>
-                    <p class="heading">Followers</p>
-                    <p class="title">456K</p>
+                    <p class="heading"></p>
+                    <p class="title"></p>
                 </div>
             </div>
         </div>
@@ -26,9 +26,9 @@
             <img src="{{ asset('img/quizknows.png') }}" alt="Quiz Knows Logo" width="200" height="50">
             <br><br>
             <strong>Quiz Knows</strong> by
-            <a href="https://github.com/ahinkle">Andrew Hinkle</a>,
+            <a href="https://github.com/ahinkle">Andy Hinkle</a>,
             <a href="https://github.com/DaltonMcCleery">Dalton McCleery</a>,
-            and Sam Kuban.
+            <a href="https://twitter.com/samkuban">and Sam Kuban</a>.
         </p>
     </div>
 </footer>

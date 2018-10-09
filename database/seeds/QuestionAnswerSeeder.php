@@ -18,7 +18,7 @@ class QuestionAnswerSeeder extends Seeder
 
         $questions = [
             [
-                'question' => 'Dine-In, Carry-out, or Delivery?',
+                'question' => 'Dine-In or Carry-Out?',
                 'answers'  => [
                     'Dine-In',
                     'Carry-Out',
