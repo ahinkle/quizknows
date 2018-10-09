@@ -47965,84 +47965,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      showQuiz: true,
-      questions: [],
-      current_question: "",
-      remaining: "",
-      endpoint: "api/questions",
-      weights_endpoint: "api/quiz/new",
-      post_answer: "api/quiz/answer",
-      weights: [],
-      result: ""
-    };
-  },
-  mounted: function mounted() {
-    //console.log("Quiz Component mounted");
-  },
-  created: function created() {
-    this.fetch();
-  },
-
-
-  methods: {
-    fetch: function fetch() {
-      var _this = this;
-
-      // Initialize Weights
-      axios.get(this.weights_endpoint).then(function (_ref) {
-        var data = _ref.data;
-
-        _this.weights = data;
-      });
-
-      // Load Questions & Answers
-      axios.get(this.endpoint).then(function (_ref2) {
-        var data = _ref2.data;
-
-        _this.questions = data.data;
-        _this.current_question = _this.questions[0];
-        _this.remaining = _this.questions.length - 1;
-      });
+    data: function data() {
+        return {
+            showQuiz: true,
+            questions: [],
+            current_question: "",
+            remaining: "",
+            endpoint: "api/questions",
+            weights_endpoint: "api/quiz/new",
+            post_answer: "api/quiz/answer",
+            weights: [],
+            result: ""
+        };
     },
-    answerQuestion: function answerQuestion(question_id, answer_id) {
-      var _this2 = this;
+    created: function created() {
+        var _this = this;
 
-      // Store Answer
-      axios.post(this.post_answer, {
-        answer: answer_id,
-        weights: this.weights
-      }).then(function (_ref3) {
-        var data = _ref3.data;
+        // Initialize Weights
+        axios.get(this.weights_endpoint).then(function (_ref) {
+            var data = _ref.data;
 
-        _this2.weights = data;
-      });
+            _this.weights = data;
+        });
 
-      // Remove question from remaining question array
-      this.removeQuestion(question_id);
+        // Load Questions & Answers
+        axios.get(this.endpoint).then(function (_ref2) {
+            var data = _ref2.data;
+
+            _this.questions = data.data;
+            _this.current_question = _this.questions[0];
+            _this.remaining = _this.questions.length - 1;
+        });
     },
-    removeQuestion: function removeQuestion(question_id) {
-      this.questions = _.remove(this.questions, function (question) {
-        return question.id !== question_id;
-      });
 
-      // Check for more questions
-      if (Object.keys(this.questions).length === 0) {
-        // no more questions, get result
-        this.weights = this.sortProperty(this.weights);
-        this.result = this.weights[0].name;
-        this.showQuiz = false;
-      } else {
-        // Access the next Question
-        this.current_question = this.questions[0];
-        this.remaining = this.questions.length - 1;
-      }
-    },
-    sortProperty: function sortProperty(weights) {
-      return _.orderBy(weights, "weight", "desc");
+
+    methods: {
+        answerQuestion: function answerQuestion(question_id, answer_id) {
+            var _this2 = this;
+
+            // Store Answer
+            axios.post(this.post_answer, {
+                answer: answer_id,
+                weights: this.weights
+            }).then(function (_ref3) {
+                var data = _ref3.data;
+
+                _this2.weights = data;
+            });
+
+            // Remove question from remaining question array
+            this.removeQuestion(question_id);
+        },
+        removeQuestion: function removeQuestion(question_id) {
+            this.questions = _.remove(this.questions, function (question) {
+                return question.id !== question_id;
+            });
+
+            // Check for more questions
+            if (Object.keys(this.questions).length === 0) {
+                // no more questions, get result
+                this.weights = this.sortProperty(this.weights);
+                this.result = this.weights[0].name;
+                this.showQuiz = false;
+
+                // Show other User's picked answers
+                this.displayStats();
+            } else {
+                // Access the next Question
+                this.current_question = this.questions[0];
+                this.remaining = this.questions.length - 1;
+            }
+        },
+        sortProperty: function sortProperty(weights) {
+            return _.orderBy(weights, "weight", "desc");
+        },
+        displayStats: function displayStats() {
+            //todo
+        }
     }
-  }
 });
 
 /***/ }),

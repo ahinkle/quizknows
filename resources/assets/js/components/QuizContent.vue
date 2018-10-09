@@ -20,79 +20,79 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      showQuiz: true,
-      questions: [],
-      current_question: "",
-      remaining: "",
-      endpoint: "api/questions",
-      weights_endpoint: "api/quiz/new",
-      post_answer: "api/quiz/answer",
-      weights: [],
-      result: ""
+    export default {
+        data() {
+            return {
+                showQuiz: true,
+                questions: [],
+                current_question: "",
+                remaining: "",
+                endpoint: "api/questions",
+                weights_endpoint: "api/quiz/new",
+                post_answer: "api/quiz/answer",
+                weights: [],
+                result: ""
+            };
+        },
+
+        created() {
+            // Initialize Weights
+            axios.get(this.weights_endpoint).then(({ data }) => {
+                this.weights = data;
+            });
+
+            // Load Questions & Answers
+            axios.get(this.endpoint).then(({ data }) => {
+                this.questions = data.data;
+                this.current_question = this.questions[0];
+                this.remaining = this.questions.length - 1;
+            });
+        },
+
+        methods: {
+
+            answerQuestion(question_id, answer_id) {
+                // Store Answer
+                axios.post(this.post_answer, {
+                    answer: answer_id,
+                     weights: this.weights
+                })
+                .then(({ data }) => {
+                    this.weights = data;
+                });
+
+                // Remove question from remaining question array
+                this.removeQuestion(question_id);
+            },
+
+            removeQuestion(question_id) {
+                this.questions = _.remove(this.questions, function(question) {
+                    return question.id !== question_id;
+                });
+
+                // Check for more questions
+                if (Object.keys(this.questions).length === 0) {
+                    // no more questions, get result
+                    this.weights = this.sortProperty(this.weights);
+                    this.result = this.weights[0].name;
+                    this.showQuiz = false;
+
+                    // Show other User's picked answers
+                    this.displayStats();
+                } else {
+                    // Access the next Question
+                    this.current_question = this.questions[0];
+                    this.remaining = this.questions.length - 1;
+                }
+            },
+
+            sortProperty(weights) {
+                return _.orderBy(weights, "weight", "desc");
+            },
+
+            displayStats() {
+                //todo
+            }
+        }
     };
-  },
-
-  mounted() {
-    //console.log("Quiz Component mounted");
-  },
-
-  created() {
-    this.fetch();
-  },
-
-  methods: {
-    fetch() {
-      // Initialize Weights
-      axios.get(this.weights_endpoint).then(({ data }) => {
-        this.weights = data;
-      });
-
-      // Load Questions & Answers
-      axios.get(this.endpoint).then(({ data }) => {
-        this.questions = data.data;
-        this.current_question = this.questions[0];
-        this.remaining = this.questions.length - 1;
-      });
-    },
-
-    answerQuestion(question_id, answer_id) {
-      // Store Answer
-      axios
-        .post(this.post_answer, {
-          answer: answer_id,
-          weights: this.weights
-        })
-        .then(({ data }) => {
-          this.weights = data;
-        });
-
-      // Remove question from remaining question array
-      this.removeQuestion(question_id);
-    },
-
-    removeQuestion(question_id) {
-      this.questions = _.remove(this.questions, function(question) {
-        return question.id !== question_id;
-      });
-
-      // Check for more questions
-      if (Object.keys(this.questions).length === 0) {
-        // no more questions, get result
-        this.weights = this.sortProperty(this.weights);
-        this.result = this.weights[0].name;
-        this.showQuiz = false;
-      } else {
-        // Access the next Question
-        this.current_question = this.questions[0];
-        this.remaining = this.questions.length - 1;
-      }
-    },
-    sortProperty(weights) {
-      return _.orderBy(weights, "weight", "desc");
-    }
-  }
-};
 </script>
