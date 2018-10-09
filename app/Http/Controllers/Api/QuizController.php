@@ -55,4 +55,23 @@ class QuizController extends Controller
         // Update Cookie
         return $weights;
     }
+
+    /**
+     * Update the winning Restaurant's pick rate
+     *
+     * @param Request $request
+     */
+    public function finalRestaurant(Request $request) {
+        $restaurant = Restaurant::where('id', $request->restaurant_id);
+        $restaurant->update([ 'picks' => $restaurant->value('picks') + 1 ]);
+    }
+
+    /**
+     * Get sorted Answers
+     *
+     * @return mixed
+     */
+    public function getAnswers() {
+        return Restaurant::orderBy('picks', 'desc')->get();
+    }
 }
