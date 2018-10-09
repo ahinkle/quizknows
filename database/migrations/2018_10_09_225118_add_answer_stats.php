@@ -17,6 +17,11 @@ class AddAnswerStats extends Migration
         Schema::table('answers', function (Blueprint $table) {
             $table->integer('picks')->default(0);
         });
+
+        // Add stat column to restaurants
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->integer('picks')->default(0);
+        });
     }
 
     /**
@@ -27,6 +32,10 @@ class AddAnswerStats extends Migration
     public function down()
     {
         Schema::table('answers', function (Blueprint $table) {
+            $table->dropColumn('picks');
+        });
+
+        Schema::table('restaurants', function (Blueprint $table) {
             $table->dropColumn('picks');
         });
     }
