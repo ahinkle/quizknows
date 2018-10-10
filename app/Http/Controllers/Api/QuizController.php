@@ -72,6 +72,6 @@ class QuizController extends Controller
      * @return mixed
      */
     public function getAnswers() {
-        return Restaurant::orderBy('picks', 'desc')->get();
+        return Restaurant::orderBy('picks', 'desc')->limit(5)->get();
     }
 }
