@@ -48080,12 +48080,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         displayStats: function displayStats() {
             var _this3 = this;
 
-            // Get sorted Answers
-            axios.get('/api/answers').then(function (_ref4) {
+            // Get sorted Restaurants
+            axios.get('/api/restaurants').then(function (_ref4) {
                 var data = _ref4.data;
 
                 _this3.stats = data;
             });
+            console.log(this.stats);
         }
     }
 });

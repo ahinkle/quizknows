@@ -122,10 +122,11 @@
 
             // Display top picked Restaurants
             displayStats() {
-                // Get sorted Answers
-                axios.get('/api/answers').then(({ data }) => {
+                // Get sorted Restaurants
+                axios.get('/api/restaurants').then(({ data }) => {
                     this.stats = data;
                 });
+                console.log(this.stats)
             }
         }
     };
