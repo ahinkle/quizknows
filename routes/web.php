@@ -13,6 +13,6 @@
 
 Route::get('/', 'QuizController@homepage');
 
-Route::get('/result', function () {
-    return view('result');
+Route::get('/stats', function () {
+    return view('stats');
 });

@@ -11,6 +11,11 @@
             <div class="navbar-item">
                 <div class="field is-grouped">
                     <p class="control">
+                        <a class="bd-tw-button button is-link" href="{{ url('/stats') }}">
+                            <span>
+                                View Statistics
+                            </span>
+                        </a>
                         <a class="bd-tw-button button is-info" data-social-network="Twitter" data-social-action="tweet"
                            target="_blank" href="https://twitter.com/Quiz_Knows">
                             <span class="icon">
