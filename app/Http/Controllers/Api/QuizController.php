@@ -67,7 +67,7 @@ class QuizController extends Controller
     }
 
     /**
-     * Get sorted Restaurants
+     * Get sorted Restaurants (limited)
      *
      * @return mixed
      */
@@ -76,11 +76,29 @@ class QuizController extends Controller
     }
 
     /**
-     * Get sorted Answers
+     * Get ALL sorted Restaurants
+     *
+     * @return mixed
+     */
+    public function getAllRestaurants() {
+        return Restaurant::orderBy('picks', 'desc')->get();
+    }
+
+    /**
+     * Get sorted Answers (limited)
      *
      * @return mixed
      */
     public function getAnswers() {
         return Answer::orderBy('picks', 'desc')->limit(5)->get();
+    }
+
+    /**
+     * Get ALL sorted Answers
+     *
+     * @return mixed
+     */
+    public function getAllAnswers() {
+        return Answer::orderBy('picks', 'desc')->get();
     }
 }

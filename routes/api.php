@@ -21,4 +21,6 @@ Route::post('quiz/answer', 'Api\QuizController@update');
 Route::post('quiz/final', 'Api\QuizController@finalRestaurant');
 
 Route::get('restaurants', 'Api\QuizController@getRestaurants');
+Route::get('restaurants/all', 'Api\QuizController@getAllRestaurants');
 Route::get('answers', 'Api\QuizController@getAnswers');
+Route::get('answers/all', 'Api\QuizController@getAllAnswers');
