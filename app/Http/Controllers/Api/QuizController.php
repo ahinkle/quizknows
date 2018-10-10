@@ -67,11 +67,20 @@ class QuizController extends Controller
     }
 
     /**
+     * Get sorted Restaurants
+     *
+     * @return mixed
+     */
+    public function getRestaurants() {
+        return Restaurant::orderBy('picks', 'desc')->limit(5)->get();
+    }
+
+    /**
      * Get sorted Answers
      *
      * @return mixed
      */
     public function getAnswers() {
-        return Restaurant::orderBy('picks', 'desc')->limit(5)->get();
+        return Answer::orderBy('picks', 'desc')->limit(5)->get();
     }
 }
