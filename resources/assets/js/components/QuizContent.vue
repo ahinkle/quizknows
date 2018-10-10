@@ -19,7 +19,6 @@
         <div class="notification is-success">
             <p class="title has-text-centered">{{ result }}</p>
         </div>
-        </article>
         <hr>
 
         <!-- Top 5 Picks -->
