@@ -20,6 +20,7 @@ import 'buefy/lib/buefy.css'
  */
 
 Vue.component('quiz-content', require('./components/QuizContent.vue'));
+Vue.component('statistics', require('./components/QuizStats.vue'));
 
 // Initialize Buefy CSS Library
 Vue.use(Buefy);
