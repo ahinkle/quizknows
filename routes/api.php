@@ -18,3 +18,5 @@ Route::resource('questions', 'Api\QuestionsController')
 
 Route::get('quiz/new', 'Api\QuizController@new');
 Route::post('quiz/answer', 'Api\QuizController@update');
+Route::post('quiz/final', 'Api\QuizController@finalRestaurant');
+Route::get('answers', 'Api\QuizController@getAnswers');
