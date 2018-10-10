@@ -14,8 +14,26 @@
         </p>
     </div>
     <div class="content" v-else>
+        <!-- Winning Restaurant -->
         <p class="title has-text-centered">Your Result Is...</p>
         <p class="title has-text-centered">{{ result }}</p>
+        <hr>
+
+        <!-- Top 5 Picks -->
+        <p class="title has-text-centered">Top 5 Picked Restaurants</p>
+        <div class="columns is-centered" v-for="stat in stats">
+            <div class="column is-desktop is-half-desktop" style="word-wrap: break-word">
+                <div class="button is-large is-fullwidth" style="height: 115%">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">{{ stat.name }}</p>
+                            <p class="title">{{ stat.picks }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
     </div>
 </template>
 
@@ -31,7 +49,8 @@
                 weights_endpoint: "api/quiz/new",
                 post_answer: "api/quiz/answer",
                 weights: [],
-                result: ""
+                result: "",
+                stats: []
             };
         },
 
@@ -51,6 +70,7 @@
 
         methods: {
 
+            // Answer a Question
             answerQuestion(question_id, answer_id) {
                 // Store Answer
                 axios.post(this.post_answer, {
@@ -65,6 +85,7 @@
                 this.removeQuestion(question_id);
             },
 
+            // Remove an answered Question and check if Quiz is finished
             removeQuestion(question_id) {
                 this.questions = _.remove(this.questions, function(question) {
                     return question.id !== question_id;
@@ -77,6 +98,11 @@
                     this.result = this.weights[0].name;
                     this.showQuiz = false;
 
+                    // Post picked Restaurant to update pick rate
+                    axios.post('/api/quiz/final', {
+                        restaurant_id: this.weights[0].id
+                    });
+
                     // Show other User's picked answers
                     this.displayStats();
                 } else {
@@ -86,12 +112,17 @@
                 }
             },
 
+            // Sort Restaurant weights
             sortProperty(weights) {
                 return _.orderBy(weights, "weight", "desc");
             },
 
+            // Display top picked Restaurants
             displayStats() {
-                //todo
+                // Get sorted Answers
+                axios.get('/api/answers').then(({ data }) => {
+                    this.stats = data;
+                });
             }
         }
     };

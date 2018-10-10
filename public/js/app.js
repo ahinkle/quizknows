@@ -47963,6 +47963,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47975,7 +47993,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             weights_endpoint: "api/quiz/new",
             post_answer: "api/quiz/answer",
             weights: [],
-            result: ""
+            result: "",
+            stats: []
         };
     },
     created: function created() {
@@ -48000,6 +48019,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+
+        // Answer a Question
         answerQuestion: function answerQuestion(question_id, answer_id) {
             var _this2 = this;
 
@@ -48016,6 +48037,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Remove question from remaining question array
             this.removeQuestion(question_id);
         },
+
+
+        // Remove an answered Question and check if Quiz is finished
         removeQuestion: function removeQuestion(question_id) {
             this.questions = _.remove(this.questions, function (question) {
                 return question.id !== question_id;
@@ -48028,6 +48052,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.result = this.weights[0].name;
                 this.showQuiz = false;
 
+                // Post picked Restaurant to update pick rate
+                axios.post('/api/quiz/final', {
+                    restaurant_id: this.weights[0].id
+                });
+
                 // Show other User's picked answers
                 this.displayStats();
             } else {
@@ -48036,11 +48065,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.remaining = this.questions.length - 1;
             }
         },
+
+
+        // Sort Restaurant weights
         sortProperty: function sortProperty(weights) {
             return _.orderBy(weights, "weight", "desc");
         },
+
+
+        // Display top picked Restaurants
         displayStats: function displayStats() {
-            //todo
+            var _this3 = this;
+
+            // Get sorted Answers
+            axios.get('/api/answers').then(function (_ref4) {
+                var data = _ref4.data;
+
+                _this3.stats = data;
+            });
         }
     }
 });
@@ -48109,15 +48151,66 @@ var render = function() {
         ],
         2
       )
-    : _c("div", { staticClass: "content" }, [
-        _c("p", { staticClass: "title has-text-centered" }, [
-          _vm._v("Your Result Is...")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "title has-text-centered" }, [
-          _vm._v(_vm._s(_vm.result))
-        ])
-      ])
+    : _c(
+        "div",
+        { staticClass: "content" },
+        [
+          _c("p", { staticClass: "title has-text-centered" }, [
+            _vm._v("Your Result Is...")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "title has-text-centered" }, [
+            _vm._v(_vm._s(_vm.result))
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", { staticClass: "title has-text-centered" }, [
+            _vm._v("Top 5 Picked Restaurants")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.stats, function(stat) {
+            return _c("div", { staticClass: "columns is-centered" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "column is-desktop is-half-desktop",
+                  staticStyle: { "word-wrap": "break-word" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "button is-large is-fullwidth",
+                      staticStyle: { height: "115%" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "level-item has-text-centered" },
+                        [
+                          _c("div", [
+                            _c("p", { staticClass: "heading" }, [
+                              _vm._v(_vm._s(stat.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "title" }, [
+                              _vm._v(_vm._s(stat.picks))
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          }),
+          _vm._v(" "),
+          _c("br")
+        ],
+        2
+      )
 }
 var staticRenderFns = []
 render._withStripped = true
