@@ -47981,6 +47981,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -48159,8 +48163,10 @@ var render = function() {
             _vm._v("Your Result Is...")
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "title has-text-centered" }, [
-            _vm._v(_vm._s(_vm.result))
+          _c("div", { staticClass: "notification is-success" }, [
+            _c("p", { staticClass: "title has-text-centered" }, [
+              _vm._v(_vm._s(_vm.result))
+            ])
           ]),
           _vm._v(" "),
           _c("hr"),

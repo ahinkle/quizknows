@@ -16,7 +16,10 @@
     <div class="content" v-else>
         <!-- Winning Restaurant -->
         <p class="title has-text-centered">Your Result Is...</p>
-        <p class="title has-text-centered">{{ result }}</p>
+        <div class="notification is-success">
+            <p class="title has-text-centered">{{ result }}</p>
+        </div>
+        </article>
         <hr>
 
         <!-- Top 5 Picks -->
@@ -34,6 +37,7 @@
             </div>
         </div>
         <br>
+
     </div>
 </template>
 
